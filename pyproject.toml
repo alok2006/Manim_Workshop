@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "manim-workshop"
+version = "1.0.0"
+description = "A hands-on Manim workshop: from a single circle to Fourier epicycles tracing a photograph"
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["manim", "animation", "workshop", "education", "fourier", "opencv"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Education",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Education",
+    "Topic :: Multimedia :: Video",
+]
+# Floors, not pins: `requirements.txt` carries the exact versions this workshop
+# was recorded with, and that is what CI installs.
+dependencies = [
+    "manim>=0.19",
+    "numpy>=2.1",
+    "opencv-python>=4.8",
+]
+
+[project.optional-dependencies]
+notebook = ["jupyterlab>=4.0", "ipykernel>=6.29"]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.urls]
+Repository = "https://github.com/alok2006/Manim_Workshop"
+
+[tool.setuptools]
+packages = ["manim_workshop"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "slow: renders real video files (deselect with '-m \"not slow\"')",
+]
+
+[tool.ruff]
+# 120 rather than 100: several files are tables of prose (the notebook cell
+# plan, the documentation-drift assertions) where wrapping hurts readability.
+line-length = 120
+target-version = "py311"
+extend-exclude = ["notebooks", ".venv", "media", ".trash"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+# `from manim import *` is the documented Manim idiom (see docs/concepts/01-…).
+"scenes/*" = ["F403", "F405"]
+# These scripts adjust sys.path before importing the local package.
+"scripts/*" = ["E402"]

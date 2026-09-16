@@ -1,0 +1,10 @@
+# Everything needed to run the tests, lint the code and open the notebook.
+# Used by `make install` and by CI.
+-r requirements.txt
+
+pytest>=8.0
+ruff>=0.6
+nbformat>=5.10
+nbclient>=0.10
+jupyterlab>=4.0
+ipykernel>=6.29

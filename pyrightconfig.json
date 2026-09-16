@@ -1,0 +1,13 @@
+{
+  // Manim's bundled type stubs are imprecise in ways that fire on every scene:
+  // `ORIGIN` and `get_center()` are typed `Vector3D` (an ndarray) while
+  // parameters such as `about_point` demand `Sequence[float]`, `Dot([x, y, z])`
+  // is typed `Point3DLike`, and `always_redraw()` claims to return `Mobject`.
+  // All of these are correct at runtime and are the documented Manim idioms,
+  // so `scenes/` is excluded from type checking rather than littered with
+  // `# type: ignore`. The library code below IS type checked.
+  "include": ["manim_workshop", "scripts", "tests"],
+  "exclude": ["scenes", "notebooks", ".venv", "media", ".trash"],
+  "typeCheckingMode": "basic",
+  "reportMissingImports": true
+}

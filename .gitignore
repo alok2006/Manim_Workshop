@@ -1,0 +1,36 @@
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# --- Tool caches ------------------------------------------------------------
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# --- Manim ------------------------------------------------------------------
+# Manim's scratch workspace: every render writes here, including the
+# partial-movie-files used for caching. Nothing in here is tracked.
+#
+# NOTE: `videos/` holds the curated low-quality previews and IS tracked on
+# purpose (see videos/README.md), which is why *.mp4 is not ignored globally.
+media/
+*.webm
+*.mov
+
+# --- Jupyter ----------------------------------------------------------------
+.ipynb_checkpoints/
+
+# --- Editors and OS ---------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+
+# --- Local scratch ----------------------------------------------------------
+# `make clean` moves render artefacts here instead of deleting them; see
+# CONTRIBUTING.md ("nothing is deleted").
+.trash/
